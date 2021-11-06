@@ -7,7 +7,7 @@ public class AI : MonoBehaviour, IStateContext
     IState currentState;
     Animator anim;
     public MoodChecker mood { get; private set; }
-    public List<GameObject> enemiesReference;
+    [HideInInspector] public List<GameObject> enemiesReference;
 
     public virtual void Awake()
     {

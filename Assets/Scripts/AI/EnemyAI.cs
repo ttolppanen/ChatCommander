@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class EnemyAI : AI
 {
-    public float startMovingBias;
-    public float stopMovingBias;
     public override void Awake()
     {
         base.Awake();
