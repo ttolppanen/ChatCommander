@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public static class UF
 {
@@ -28,21 +29,40 @@ public static class UF
         float a = b * b / (4 * (l - h));
         return a * x * x + b * x + c;
     }
-    public static bool ValidDirection(string dir)
+    public static bool DoISeeYou(Transform me, Transform enemy, bool checkIfBehindCover = false)
     {
-        return dir == "right" || dir == "up" || dir == "left" || dir == "down";
-    }
-    public static Vector2 DirectionToVector(string dir)
-    {
-        switch (dir)
+        Vector2 dir = enemy.position - me.position;
+        RaycastHit2D[] hits;
+        if (checkIfBehindCover)
         {
-            case "right":
-                return Vector2.right;
-            case "up":
-                return Vector2.up;
-            case "left":
-                return Vector2.left;
+            hits = Physics2D.RaycastAll(me.position, dir, dir.magnitude, GM.ins.solidMask);
         }
-        return Vector2.down;
+        else
+        {
+            hits = Physics2D.RaycastAll(me.position, dir, dir.magnitude, GM.ins.solidMask | LayerMask.GetMask("HardToSee"));
+        }
+        hits = hits.OrderBy(h => h.distance).ToArray();
+        foreach (RaycastHit2D hit in hits)
+        {
+            if (hit.transform == enemy)
+            {
+                return true;
+            }
+            else if (hit.transform.CompareTag("Solid"))
+            {
+                return false;
+            }
+            else if (hit.transform.CompareTag("HardToSee") && UF.Chance(0.5f))
+            {
+                return false;
+            }
+        }
+        return false;
+    }
+    public static bool InPit(Vector3 pos)
+    {
+        Ray ray = new Ray(pos + new Vector3(0, 0, 10), Vector3.back);
+        RaycastHit2D hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity, LayerMask.GetMask("Pit"));
+        return hit.collider != null;
     }
 }

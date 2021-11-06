@@ -10,8 +10,6 @@ public class GM : MonoBehaviour
     NavMeshSurface2d navMesh;
     public Vector2 mapXSize;
     public Vector2 mapYSize;
-    public List<GameObject> enemies;
-    public List<GameObject> allies;
     [HideInInspector] public int solidMask;
     public RuntimeAnimatorController[] gunAnimations;
     private void Start()

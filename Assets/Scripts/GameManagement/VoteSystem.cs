@@ -9,10 +9,14 @@ public class VoteSystem
     Text voteText;
     Text voteTimeText;
 
-    public VoteSystem(Text voteText, Text voteTimeText)
+    public VoteSystem(Text voteText, Text voteTimeText, List<string> votes)
     {
         this.voteText = voteText;
         this.voteTimeText = voteTimeText;
+        foreach(string voteName in votes)
+        {
+            votesDic.Add(voteName, new List<string>());
+        }
         UpdateVoteText();
     }
     public void Vote(string chatName, string vote)
@@ -24,10 +28,6 @@ public class VoteSystem
         votesDic[vote].Add(chatName);
         UpdateVoteText();
         UpdateVoteTime(0);
-    }
-    public void AddVote(string voteName)
-    {
-        votesDic.Add(voteName, new List<string>());
     }
 
     public string VoteResult()
@@ -68,5 +68,9 @@ public class VoteSystem
     public void UpdateVoteTime(float time)
     {
         voteTimeText.text = Mathf.RoundToInt(time).ToString();
+    }
+    public bool IsValidVote(string voteName)
+    {
+        return votesDic.ContainsKey(voteName);
     }
 }

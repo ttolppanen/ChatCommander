@@ -9,73 +9,42 @@ public class EnemyAI : AI
     public override void Awake()
     {
         base.Awake();
-        enemies = GM.ins.allies;
+        enemiesReference = PlayerSpawner.Instance.GetAlliedUnits();
     }
     private void Start()
     {
-        SetMovePoint(new Vector2(transform.position.x, -20));
+        StartMoving(new Vector2(transform.position.x, -20));
     }
 
     public override void Update()
     {
-        if (anim.GetAnimatorTransitionInfo(0).duration > 0 || InForbbiddenState())
+        if (mood.DoIWantToMove())
         {
-            return;
+            StartMovingToANewPlace();
         }
-        if (state == UnitStates.idle && DoIWantToMove())
+        if (mood.DoIWantToStop())
         {
-            StartMoving();
+            StopMoving();
         }
-        else if (state == UnitStates.moving && DoIWantToStop())
-        {
-            StopMovement();
-        }
-        else if ((state == UnitStates.idle || state == UnitStates.moving) && DoIWantToShoot())
+        if (mood.DoIWantToShoot())
         {
             List<GameObject> visibleEnemies = VisibleEnemies();
             if (visibleEnemies.Count > 0)
             {
-                if (state == UnitStates.moving)
-                {
-                    StopMovement();
-                }
-                StartAiming(visibleEnemies[Random.Range(0, visibleEnemies.Count)]);
-                return;
+                Transform enemy = visibleEnemies[Random.Range(0, visibleEnemies.Count)].transform;
+                StartAiming(enemy);
             }
         }
         base.Update();
     }
-
-    bool DoIWantToStop()
-    {
-        if (DoISeeAnyone())
-        {
-            return UF.Chance((stats.morale + stopMovingBias) / (100f + stopMovingBias) * Time.deltaTime);
-        }
-        return UF.Chance((stats.morale + stopMovingBias  + 20f) / (100f + stopMovingBias + 20f) * Time.deltaTime);
-    }
-    bool DoIWantToMove()
-    {
-        if (DoISeeAnyone())
-        {
-            return UF.Chance((stats.morale + startMovingBias + 50f) / (100f + startMovingBias + 50f)  * Time.deltaTime);
-        }
-        return UF.Chance((stats.morale + startMovingBias) / (100f + startMovingBias) * Time.deltaTime);
-    }
-    void StartMoving()
+    void StartMovingToANewPlace()
     {
         Vector2 newPos = (Vector2)transform.position + new Vector2(Random.Range(-1f, 1f), Random.Range(0f, -3f));
-        SetMovePoint(newPos);
-    }
-    bool DoISeeAnyone()
-    {
-        foreach (GameObject allie in GM.ins.allies)
+        if (GM.ins.IsInsideMap(newPos))
         {
-            if (IsVisible(allie))
-            {
-                return true;
-            }
+            StartMoving(newPos);
+            return;
         }
-        return false;
+        StartMovingToANewPlace();
     }
 }

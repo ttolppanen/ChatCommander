@@ -8,6 +8,6 @@ public class GunBox : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        collision.GetComponent<AI>().ChangeGun(gun);
+        //collision.GetComponent<AI>().ChangeGun(gun);
     }
 }

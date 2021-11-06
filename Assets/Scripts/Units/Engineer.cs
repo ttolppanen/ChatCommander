@@ -10,6 +10,10 @@ public class Engineer : MonoBehaviour
     public int sandBagsCost;
     public int resources;
 
+    private void OnEnable()
+    {
+        //UnitCommands.OnBuildSandBagAction += BuildSandBags;
+    }
     bool SpendResources(int amount)
     {
         if (resources >= amount)
@@ -20,16 +24,17 @@ public class Engineer : MonoBehaviour
         }
         return false;
     }
-    public bool BuildSandBags(string direction)
+    public void BuildSandBags(string name, string direction)
     {
-        if (UF.ValidDirection(direction) && SpendResources(sandBagsCost))
+        if (gameObject.name == name)
         {
-            BuildInstantiateInfo buildInfo = new BuildInstantiateInfo(direction);
-            GameObject inst = Instantiate(sandBags, new Vector3(transform.position.x, transform.position.y, sandBags.transform.position.z) + (Vector3)buildInfo.spawnPoint * 0.5f, buildInfo.spawnRotation);
-            GM.ins.AddToNavMesh(inst.transform);
-            return true;
+            if (SpendResources(sandBagsCost))
+            {
+                BuildInstantiateInfo buildInfo = new BuildInstantiateInfo(direction);
+                GameObject inst = Instantiate(sandBags, new Vector3(transform.position.x, transform.position.y, sandBags.transform.position.z) + (Vector3)buildInfo.spawnPoint * 0.5f, buildInfo.spawnRotation);
+                GM.ins.AddToNavMesh(inst.transform);
+            }
         }
-        return false;
     }
     public void GiveResources(int amount)
     {

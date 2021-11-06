@@ -5,7 +5,10 @@ using UnityEngine.UI;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public GameObject[] enemies;
+    public static EnemySpawner Instance;
+
+    [SerializeField] private GameObject[] enemyPrefabs;
+    public List<GameObject> enemiesOnField { get; private set; } = new List<GameObject>();
     public int spawnCount;
     public float spawnX;
     public float spawnY;
@@ -13,6 +16,18 @@ public class EnemySpawner : MonoBehaviour
     public Text waveText;
     public Text timeText;
     int wave = 0;
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void Start()
     {
@@ -37,8 +52,8 @@ public class EnemySpawner : MonoBehaviour
         for (int i = 0; i < enemiesToSpawn; i++)
         {
             Vector2 spawnPoint = (Vector2)transform.position + new Vector2(Random.Range(-1f, 1f) * spawnX, Random.Range(-1f, 1f) * spawnY);
-            GameObject enemyInstance = Instantiate(enemies[Random.Range(0, enemies.Length)], spawnPoint, Quaternion.identity);
-            GM.ins.enemies.Add(enemyInstance);
+            GameObject enemyInstance = Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)], spawnPoint, Quaternion.identity);
+            enemiesOnField.Add(enemyInstance);
         }
     }
 }

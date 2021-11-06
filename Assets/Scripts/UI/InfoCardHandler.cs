@@ -22,14 +22,14 @@ public class InfoCardHandler : MonoBehaviour
     }
     public void MakePlayerInfoCard(GameObject player)
     {
-        float height = playerInfoCard.GetComponent<RectTransform>().sizeDelta.y;
-        GameObject cardInstance = Instantiate(playerInfoCard, transform);
-        cardInstance.transform.position = (Vector2)transform.position + new Vector2(0, -numberOfCards * height);
-        PlayerInfoCard cardInfo = cardInstance.GetComponent<PlayerInfoCard>();
-        AI unitAI = player.GetComponent<AI>();
-        cardInfo.playerName.text = player.name;
-        cardInfo.unitsStats = unitAI.stats;
-        cardInfo.unitGun = unitAI.gun;
-        numberOfCards++;
+        //float height = playerInfoCard.GetComponent<RectTransform>().sizeDelta.y;
+        //GameObject cardInstance = Instantiate(playerInfoCard, transform);
+        //cardInstance.transform.position = (Vector2)transform.position + new Vector2(0, -numberOfCards * height);
+        //PlayerInfoCard cardInfo = cardInstance.GetComponent<PlayerInfoCard>();
+        //AI unitAI = player.GetComponent<AI>();
+        //cardInfo.playerName.text = player.name;
+        //cardInfo.unitsStats = unitAI.stats;
+        //cardInfo.unitGun = unitAI.gun;
+        //numberOfCards++;
     }
 }

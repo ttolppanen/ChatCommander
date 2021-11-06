@@ -10,7 +10,7 @@ public class Health : MonoBehaviour
 
     private void Start()
     {
-        stats = GetComponent<AI>().stats;
+        stats = GetComponent<Stats>();
     }
     public float TakeDamage(float damage)
     {
@@ -33,8 +33,9 @@ public class Health : MonoBehaviour
     }
     public void Die()
     {
-        GM.ins.allies.Remove(gameObject);
-        GM.ins.enemies.Remove(gameObject);
+        // YÖÖÖKK
+        PlayerSpawner.Instance.GetAlliedUnits().Remove(gameObject);
+        EnemySpawner.Instance.enemiesOnField.Remove(gameObject);
         Destroy(gameObject);
     }
     public void OnHitEffects(Vector2 hitPoint, Vector2 dir, Vector2 collPoint)

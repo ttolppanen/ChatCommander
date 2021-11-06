@@ -128,12 +128,11 @@ GameObject:
   - component: {fileID: 8212158682199543036}
   - component: {fileID: 1760821576432454869}
   - component: {fileID: 8212158682199543037}
-  - component: {fileID: 8212158682199543010}
-  - component: {fileID: -6050851722402581683}
   - component: {fileID: 5749143027607904977}
   - component: {fileID: 8212158682199543008}
   - component: {fileID: 8212158682199543011}
   - component: {fileID: 4372740335684261000}
+  - component: {fileID: 8212158682199543010}
   - component: {fileID: 7647411838650384000}
   m_Layer: 8
   m_Name: Engineer
@@ -198,37 +197,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &8212158682199543010
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8212158682199543009}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ac2b5f7669356544878c242da732820, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gun: {fileID: 0}
-  gunHolder: {fileID: 8212158682647848988}
-  hp: {fileID: 0}
-  stats: {fileID: 0}
-  enemies: []
-  state: 0
-  unitType: 1
---- !u!114 &-6050851722402581683
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8212158682199543009}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a502da384ed81e4bbbf89405024fa07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!195 &5749143027607904977
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -303,6 +271,19 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.19
+--- !u!114 &8212158682199543010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8212158682199543009}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b008175ae44c69a45a6c994adafaf888, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gunHolder: {fileID: 8212158682647848988}
 --- !u!114 &7647411838650384000
 MonoBehaviour:
   m_ObjectHideFlags: 0

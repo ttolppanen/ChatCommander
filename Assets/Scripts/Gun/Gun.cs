@@ -70,8 +70,8 @@ public class Gun : MonoBehaviour
             }
             else if(hit.transform.CompareTag("Unit"))
             {
-                AI hitUnitAI = hit.transform.GetComponent<AI>();
-                if (!hitUnitAI.InPit() || (hitUnitAI.InPit() && UF.Chance(0.3f + 0.7f * unitStats.accuracy / 100f)))
+                bool isUnitInPit = UF.InPit(hit.transform.position);
+                if (!isUnitInPit || (isUnitInPit && UF.Chance(0.3f + 0.7f * unitStats.accuracy / 100f)))
                 {
                     Health hitHealth = hit.transform.GetComponent<Health>();
                     unitStats.GiveExp(hitHealth.TakeDamage(damage));

@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ChatCommand
+public class ChatCommandInfo
 {
     public string chatName;
-    public string command;
+    public string commandName;
     public string argument;
     public string message;
-    public bool hasArgument;
-    public bool isValidCommand;
+    public bool hasArgument { get; }
+    public bool isValidCommand { get; }
 
-    public ChatCommand(string message)
+    public ChatCommandInfo(string message)
     {
         int splitPoint = message.IndexOf("!", 1);
         string chatName = message.Substring(0, splitPoint);
@@ -19,24 +19,24 @@ public class ChatCommand
         splitPoint = message.IndexOf(":", 1);
         this.message = message.Substring(splitPoint + 1);
         string[] messageParsed = this.message.Split(' ');
-        if (messageParsed.Length >= 3 || messageParsed.Length == 0)
+        if (!messageParsed[0].StartsWith("!") || messageParsed.Length >= 3 || messageParsed.Length == 0)
         {
             isValidCommand = false;
-            command = "1337";
+            commandName = "1337";
             argument = "69";
         }
         else if (messageParsed.Length == 2)
         {
             isValidCommand = true;
             hasArgument = true;
-            command = messageParsed[0];
+            commandName = messageParsed[0];
             argument = messageParsed[1];
         }
         else
         {
             isValidCommand = true;
             hasArgument = false;
-            command = messageParsed[0];
+            commandName = messageParsed[0];
             argument = "69";
         }
     }
