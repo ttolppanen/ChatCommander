@@ -52,7 +52,7 @@ public class Gun : MonoBehaviour
     public virtual void Fire()
     {
         ammoInGun--;
-        sounds.PlayFireSound();
+        //sounds.PlayFireSound();
         anim.SetTrigger("Fire");
         Recoil();
     }

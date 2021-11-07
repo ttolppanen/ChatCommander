@@ -77,6 +77,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -142,7 +143,7 @@ MonoBehaviour:
   gunCasing: {fileID: 1364972172326391191, guid: 97e115d6b57ca114195d6a8044c42a29, type: 3}
   ejectPosition: {fileID: 1778311705171392472}
   ejectRight: 1
-  fireRate: 9
+  fireRate: 12
 --- !u!95 &5229183666983110428
 Animator:
   serializedVersion: 3

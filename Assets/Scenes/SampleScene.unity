@@ -549,7 +549,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.7411765, g: 0.7647059, b: 0.78039217, a: 1}
+  m_Color: {r: 0.7254902, g: 0.75294125, b: 0.7725491, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1145,6 +1145,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 830274378}
+  - component: {fileID: 830274379}
   m_Layer: 0
   m_Name: Ambient Sounds
   m_TagString: Untagged
@@ -1166,6 +1167,21 @@ Transform:
   m_Father: {fileID: 330139209}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &830274379
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 830274377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bae811ab7e3c724ba62817d989a5d97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  daySound: {fileID: 8300000, guid: 1fe9948e1e50e944bbd93ef9ff614e12, type: 3}
+  nightSound: {fileID: 8300000, guid: 0ec1dfbc623ddeb4091f3881783e6cae, type: 3}
+  volume: 0.25
 --- !u!1 &845804939
 GameObject:
   m_ObjectHideFlags: 0
@@ -2565,6 +2581,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1473478203}
+  - component: {fileID: 1473478204}
   m_Layer: 0
   m_Name: Machine Gun
   m_TagString: Untagged
@@ -2586,6 +2603,21 @@ Transform:
   m_Father: {fileID: 721749189}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1473478204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1473478202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e8b57650d6d5724d996116639545381, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundEffect: {fileID: 8300000, guid: 12d62cfbb398f1d4d9b110fb3a6043bf, type: 3}
+  effectPrefab: {fileID: 5170788299685080166, guid: cb1abba51504b7c4687347c1b6410559, type: 3}
+  volume: 0.6
 --- !u!1 &1579814994
 GameObject:
   m_ObjectHideFlags: 0
@@ -2631,6 +2663,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ui: {fileID: 225330657}
   defaultSoldier: {fileID: 8212158682199543009, guid: e8971825f759f0c4ba3a9c972f0113e6, type: 3}
+  playerNameDisplayer: {fileID: 312551699308302224, guid: 784ad511205a2b24494a8ebdaec5aaba, type: 3}
 --- !u!1 &1584024646
 GameObject:
   m_ObjectHideFlags: 0

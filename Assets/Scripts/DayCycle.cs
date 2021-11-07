@@ -5,6 +5,8 @@ using UnityEngine.Experimental.Rendering.Universal;
 
 public class DayCycle : MonoBehaviour
 {
+    public static float timeOfDay { get; private set; }
+
     public float[] intensity = new float[2];
     public float[] sunIntensity = new float[2];
     public float[] shadowIntensity = new float[2];
@@ -28,9 +30,10 @@ public class DayCycle : MonoBehaviour
 
     void Update()
     {
-        float c = (1 + Mathf.Cos(startingTime + Time.time * speed)) / 2;
+        timeOfDay = startingTime + Time.time * speed;
+        float c = (1 + Mathf.Cos(timeOfDay)) / 2;
         c = Mathf.Sqrt(c);
-        float s = (1 + Mathf.Sin(startingTime + Time.time * speed)) / 2;
+        float s = (1 + Mathf.Sin(timeOfDay)) / 2;
         Color col = Color.white;
         if (c < 0.5f)
         {
