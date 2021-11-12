@@ -12,33 +12,33 @@ public class Health : MonoBehaviour
     {
         stats = GetComponent<Stats>();
     }
-    public float TakeDamage(float damage)
+    public void TakeDamage(float damage)
     {
-        stats.hp -= damage;
-        if (stats.hp <= 0)
-        {
-            float exp = stats.expOnDeath;
-            Die();
-            return exp;
-        }
-        return 0.0f;
+        //stats.hp -= damage;
+        //if (stats.hp <= 0)
+        //{
+        //    float exp = stats.expOnDeath;
+        //    Die();
+        //    return exp;
+        //}
+        //return 0.0f;
     }
     public void Heal(float amount)
     {
-        stats.hp += amount;
-        if (stats.hp >= stats.maxHp)
-        {
-            stats.hp = stats.maxHp;
-        }
+        //stats.hp += amount;
+        //if (stats.hp >= stats.maxHp)
+        //{
+        //    stats.hp = stats.maxHp;
+        //}
     }
     public void Die()
     {
-        // YÖÖÖKK
-        PlayerSpawner.Instance.GetAlliedUnits().Remove(gameObject);
-        EnemySpawner.Instance.enemiesOnField.Remove(gameObject);
-        Destroy(gameObject);
+        //// YÖÖÖKK
+        //PlayerSpawner.Instance.GetAlliedUnits().Remove(gameObject);
+        //EnemySpawner.Instance.enemiesOnField.Remove(gameObject);
+        //Destroy(gameObject);
     }
-    public void OnHitEffects(Vector2 hitPoint, Vector2 dir, Vector2 collPoint)
+    public void OnHitEffects(Vector2 hitPoint, Vector2 dir, Vector2 collPoint) //collPoint = targetPosition
     {
         Vector2 centerToHit = hitPoint - collPoint;
         Vector2 bloodPoint = hitPoint - 2 * Vector2.Dot(dir, centerToHit) * dir;

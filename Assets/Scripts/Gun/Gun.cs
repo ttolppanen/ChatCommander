@@ -56,29 +56,34 @@ public class Gun : MonoBehaviour
         anim.SetTrigger("Fire");
         Recoil();
     }
-    protected float CheckForHits(RaycastHit2D[] hits, Vector2 bulletDir)
+    protected float CheckForHits(RaycastHit2D[] hits, ShotInfo shotInfo) //Has to return final hit distance!
     {
         foreach(RaycastHit2D hit in hits)
         {
-            if (hit.transform.CompareTag("Solid"))
+            IShootable hitObject = hit.transform.GetComponent<IShootable>();
+            if (hitObject.OnHit(shotInfo, hit.point))
             {
                 return (hit.point - (Vector2)gunTip.position).magnitude;
             }
-            else if (hit.transform.CompareTag("HalfCover") && UF.Chance(hit.transform.position.z))
-            {
-                return (hit.point - (Vector2)gunTip.position).magnitude;
-            }
-            else if(hit.transform.CompareTag("Unit"))
-            {
-                bool isUnitInPit = UF.InPit(hit.transform.position);
-                if (!isUnitInPit || (isUnitInPit && UF.Chance(0.3f + 0.7f * unitStats.accuracy / 100f)))
-                {
-                    Health hitHealth = hit.transform.GetComponent<Health>();
-                    unitStats.GiveExp(hitHealth.TakeDamage(damage));
-                    hitHealth.OnHitEffects(hit.point, bulletDir, hit.collider.gameObject.transform.position);
-                    return (hit.point - (Vector2)gunTip.position).magnitude;
-                }
-            }
+            //if (hit.transform.CompareTag("Solid"))
+            //{
+            //    return (hit.point - (Vector2)gunTip.position).magnitude;
+            //}
+            //else if (hit.transform.CompareTag("HalfCover") && UF.Chance(hit.transform.position.z))
+            //{
+            //    return (hit.point - (Vector2)gunTip.position).magnitude;
+            //}
+            //else if(hit.transform.CompareTag("Unit"))
+            //{
+            //    bool isUnitInPit = UF.InPit(hit.transform.position);
+            //    if (!isUnitInPit || (isUnitInPit && UF.Chance(0.3f + 0.7f * unitStats.accuracy / 100f)))
+            //    {
+            //        Health hitHealth = hit.transform.GetComponent<Health>();
+            //        //unitStats.GiveExp(hitHealth.TakeDamage(damage));
+            //        hitHealth.OnHitEffects(hit.point, bulletDir, hit.collider.gameObject.transform.position);
+            //        return (hit.point - (Vector2)gunTip.position).magnitude;
+            //    }
+            //}
         }
         return 50f;
     }

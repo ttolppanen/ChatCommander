@@ -6,7 +6,6 @@ using UnityEngine.AI;
 public class Stats : MonoBehaviour
 {
     public float maxHp;
-    public float hp;
     public float movementSpeed;
     public float accuracy;
     public float morale;
@@ -19,7 +18,6 @@ public class Stats : MonoBehaviour
 
     private void Start()
     {
-        hp = maxHp;
         agent = GetComponent<NavMeshAgent>();
         GiveAccuracy(Random.Range(1f, 10f));
         GiveMovementSpeed(Random.Range(0f, 0.5f));

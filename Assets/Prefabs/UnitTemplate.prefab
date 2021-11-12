@@ -996,7 +996,7 @@ GameObject:
   - component: {fileID: 8212158682199543037}
   - component: {fileID: -2658957732912590545}
   - component: {fileID: 8212158682199543008}
-  - component: {fileID: 8212158682199543011}
+  - component: {fileID: 4017944572593280534}
   - component: {fileID: 8212158682199543010}
   - component: {fileID: 4372740335684261000}
   m_Layer: 8
@@ -1096,7 +1096,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 200
-  hp: 100
   movementSpeed: 1
   accuracy: 10
   morale: 10
@@ -1105,7 +1104,7 @@ MonoBehaviour:
   expOnDeath: 1
   level: 1
   exp: 0
---- !u!114 &8212158682199543011
+--- !u!114 &4017944572593280534
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1114,11 +1113,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8212158682199543009}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 435209608de745e4f8ea8c434a4424c3, type: 3}
+  m_Script: {fileID: 11500000, guid: 124330ee1225fa3408d377650db2b73b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  blood: {fileID: 4818530412949803684, guid: f2913a49f01bb3e4786387bbb2ec9eef, type: 3}
-  bloodSplatter: {fileID: 3112543110487589442, guid: 39567abc01fd69a48a4be870dbb28293, type: 3}
 --- !u!114 &8212158682199543010
 MonoBehaviour:
   m_ObjectHideFlags: 0

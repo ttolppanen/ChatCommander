@@ -44,8 +44,8 @@ public class DayCycle : MonoBehaviour
             col = Color.Lerp(inBetweenColor, dayColor, 2 * c - 1f);
         }
         sunTransform.position = Vector3.Lerp(sunRisePos, sunSetPos, s);
-        light.color = col;
-        sun.color = col;
+        //light.color = col;
+        //sun.color = col;
         light.intensity = intensity[0] + (intensity[1] - intensity[0]) * c;
         sun.intensity = sunIntensity[0] + (sunIntensity[1] - sunIntensity[0]) * c;
         sun.intensity = Mathf.Pow(sun.intensity, 2);

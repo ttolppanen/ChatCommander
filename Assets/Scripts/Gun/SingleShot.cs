@@ -24,7 +24,9 @@ public class SingleShot : Gun
         Vector2 dir = new Vector2(Mathf.Cos(gunAngle * Mathf.Deg2Rad), Mathf.Sin(gunAngle * Mathf.Deg2Rad)).normalized;
         RaycastHit2D[] hits = Physics2D.RaycastAll(gunTip.transform.position, dir, Mathf.Infinity, GM.ins.solidMask);
         hits = hits.OrderBy(h => h.distance).ToArray();
-        float dist = CheckForHits(hits, dir);
+
+        ShotInfo shotInfo = new ShotInfo(damage, dir, transform.root.name);
+        float dist = CheckForHits(hits, shotInfo);
         InstantiateGunline(dist);
         base.Fire();
     }
