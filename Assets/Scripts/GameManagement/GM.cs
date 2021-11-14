@@ -11,6 +11,7 @@ public class GM : MonoBehaviour
     public Vector2 mapXSize;
     public Vector2 mapYSize;
     [HideInInspector] public int solidMask;
+    [HideInInspector] public int shootableMask;
     public RuntimeAnimatorController[] gunAnimations;
     private void Start()
     {
@@ -23,6 +24,7 @@ public class GM : MonoBehaviour
             Destroy(gameObject);
         }
         solidMask = LayerMask.GetMask("Enemies", "Allies", "Solid");
+        shootableMask = solidMask | LayerMask.GetMask("Morale");
         navMesh = navMeshTransform.GetComponent<NavMeshSurface2d>();
     }
 

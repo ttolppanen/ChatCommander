@@ -60,7 +60,7 @@ public class Gun : MonoBehaviour
     {
         foreach(RaycastHit2D hit in hits)
         {
-            IShootable hitObject = hit.transform.GetComponent<IShootable>();
+            IShootable hitObject = hit.collider.transform.GetComponent<IShootable>();
             if (hitObject.OnHit(shotInfo, hit.point))
             {
                 return (hit.point - (Vector2)gunTip.position).magnitude;

@@ -5,21 +5,21 @@ using UnityEngine.UI;
 
 public class InfoCardHandler : MonoBehaviour
 {
-    public static InfoCardHandler ins;
-    public GameObject playerInfoCard;
-    int numberOfCards = 0;
+    //public static InfoCardHandler ins;
+    //public GameObject playerInfoCard;
+    //int numberOfCards = 0;
 
-    private void Start()
-    {
-        if (ins == null)
-        {
-            ins = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
+    //private void Start()
+    //{
+    //    if (ins == null)
+    //    {
+    //        ins = this;
+    //    }
+    //    else
+    //    {
+    //        Destroy(gameObject);
+    //    }
+    //}
     public void MakePlayerInfoCard(GameObject player)
     {
         //float height = playerInfoCard.GetComponent<RectTransform>().sizeDelta.y;

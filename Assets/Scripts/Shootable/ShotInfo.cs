@@ -6,12 +6,12 @@ public class ShotInfo
 {
     public float damage { get; set; }
     public Vector2 dir { get; private set; }
-    public string shooterName { get; private set; }
+    public Transform shooter { get; private set; }
 
-    public ShotInfo(float damage, Vector2 dir, string shooterName)
+    public ShotInfo(float damage, Vector2 dir, Transform shooter)
     {
         this.damage = damage;
         this.dir = dir;
-        this.shooterName = shooterName;
+        this.shooter = shooter;
     }
 }

@@ -12,6 +12,7 @@ public class PlayerSpawner : MonoBehaviour
 
     [SerializeField] GameObject defaultSoldier;
     [SerializeField] PlayerNameDisplayer playerNameDisplayer;
+    [SerializeField] HPBarDisplayer hpBarDisplayer;
 
     Dictionary<string, GameObject> playerList = new Dictionary<string, GameObject>();
 
@@ -45,9 +46,12 @@ public class PlayerSpawner : MonoBehaviour
             GameObject newSoldier = Instantiate(defaultSoldier, Vector3.zero, Quaternion.identity);
             newSoldier.name = chatName;
             //newSoldier.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = chatName;
-            PlayerNameDisplayer nameDisplayer = Instantiate(playerNameDisplayer);
-            nameDisplayer.SetFollowing(newSoldier.transform);
-            InfoCardHandler.ins.MakePlayerInfoCard(newSoldier);
+            PlayerNameDisplayer nameDisplayerInstance = Instantiate(playerNameDisplayer);
+            nameDisplayerInstance.SetFollowing(newSoldier.transform);
+            HPBarDisplayer hpBarDisplayerInstance = Instantiate(hpBarDisplayer);
+            hpBarDisplayerInstance.SetFollowing(newSoldier.transform);
+
+            //InfoCardHandler.ins.MakePlayerInfoCard(newSoldier);
             AddPlayer(chatName, newSoldier);
         }
     }

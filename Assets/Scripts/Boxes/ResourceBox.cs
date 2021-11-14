@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ResourceBox : MonoBehaviour
 {
-    readonly int maxResource = 3;
+    //readonly int maxResource = 3;
     //private void OnTriggerEnter2D(Collider2D collision)
     //{
     //    if (collision.GetComponent<UnitAI>().unitType == UnitTypes.engineer)

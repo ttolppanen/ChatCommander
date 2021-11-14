@@ -22,10 +22,10 @@ public class SingleShot : Gun
         float gunAngle = transform.rotation.eulerAngles.z + 90;
         gunAngle += Random.Range(-accuracy, accuracy);
         Vector2 dir = new Vector2(Mathf.Cos(gunAngle * Mathf.Deg2Rad), Mathf.Sin(gunAngle * Mathf.Deg2Rad)).normalized;
-        RaycastHit2D[] hits = Physics2D.RaycastAll(gunTip.transform.position, dir, Mathf.Infinity, GM.ins.solidMask);
+        RaycastHit2D[] hits = Physics2D.RaycastAll(gunTip.transform.position, dir, Mathf.Infinity, GM.ins.shootableMask);
         hits = hits.OrderBy(h => h.distance).ToArray();
 
-        ShotInfo shotInfo = new ShotInfo(damage, dir, transform.root.name);
+        ShotInfo shotInfo = new ShotInfo(damage, dir, transform.root);
         float dist = CheckForHits(hits, shotInfo);
         InstantiateGunline(dist);
         base.Fire();

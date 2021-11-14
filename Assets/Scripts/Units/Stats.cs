@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using System;
 
 public class Stats : MonoBehaviour
 {
+    public static event Action<Vector2, int> OnLevelUpAction;
+
     public float maxHp;
     public float movementSpeed;
     public float accuracy;
@@ -19,22 +22,23 @@ public class Stats : MonoBehaviour
     private void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        GiveAccuracy(Random.Range(1f, 10f));
-        GiveMovementSpeed(Random.Range(0f, 0.5f));
-        GiveMorale(Random.Range(1f, 10f));
-        GiveGunHandling(Random.Range(1f, 10f));
-        GiveReloadSpeed(Random.Range(1f, 10f));
+        GiveAccuracy(UnityEngine.Random.Range(1f, 10f));
+        GiveMovementSpeed(UnityEngine.Random.Range(0f, 0.5f));
+        GiveMorale(UnityEngine.Random.Range(1f, 10f));
+        GiveGunHandling(UnityEngine.Random.Range(1f, 10f));
+        GiveReloadSpeed(UnityEngine.Random.Range(1f, 10f));
         UpdateReloadSpeed();
     }
 
     void LevelUp()
     {
         level++;
-        GiveAccuracy(Random.Range(1f, 10f));
-        GiveMovementSpeed(Random.Range(0f, 0.3f));
-        GiveMorale(Random.Range(1f, 10f));
-        GiveGunHandling(Random.Range(1f, 10f));
-        GiveReloadSpeed(Random.Range(1f, 10f));
+        GiveAccuracy(UnityEngine.Random.Range(1f, 10f));
+        GiveMovementSpeed(UnityEngine.Random.Range(0f, 0.3f));
+        GiveMorale(UnityEngine.Random.Range(1f, 10f));
+        GiveGunHandling(UnityEngine.Random.Range(1f, 10f));
+        GiveReloadSpeed(UnityEngine.Random.Range(1f, 10f));
+        OnLevelUpAction?.Invoke(transform.position, level);
         UpdateReloadSpeed();
     }
 

@@ -33,7 +33,7 @@ public static class UF
     {
         Vector2 dir = enemy.position - me.position;
         RaycastHit2D[] hits;
-        if (checkIfBehindCover)
+        if (!checkIfBehindCover)
         {
             hits = Physics2D.RaycastAll(me.position, dir, dir.magnitude, GM.ins.solidMask);
         }

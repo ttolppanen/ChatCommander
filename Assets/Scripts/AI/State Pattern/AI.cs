@@ -23,6 +23,8 @@ public class AI : MonoBehaviour, IStateContext
     public void StopAiming() => currentState.StopAiming();
     public void StartShooting(ShootInfo shootInfo, Transform enemy) => currentState.StartShooting(shootInfo, enemy);
     public void StopShooting() => currentState.StopShooting();
+    public void GetDown() => currentState.GetDown();
+    public void GetUp() => currentState.GetUp();
     public void Reload() => currentState.Reload();
     public int GetStateId() => currentState.GetStateId();
 
@@ -70,5 +72,3 @@ public class AI : MonoBehaviour, IStateContext
         return visible;
     }
 }
-
-public enum UnitStates { idle, moving, aiming, shooting};

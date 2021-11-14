@@ -8,18 +8,21 @@ public class UnitHealth : MonoBehaviour, IShootable, IDamageable
     Stats stats;
     float hp;
     public static event Action<Vector2, float> OnBloodSplatterAction;
+    Transform lastUnitThatDamagedMe;
 
     private void Awake()
     {
-        stats = GetComponent<Stats>();
+        stats = transform.parent.GetComponent<Stats>();
         hp = stats.maxHp;
     }
 
     public bool OnHit(ShotInfo shot, Vector2 hitPosition)
     {
         if (UF.InPit(transform.position) && UF.Chance(0.5f)) return false;
+        if (transform.parent.GetComponent<AI>().GetStateId() == (int)UnitStates.prone && UF.Chance(0.5f)) return false;
 
         InvokeBloodSplatter(hitPosition, shot.dir, transform.position);
+        lastUnitThatDamagedMe = shot.shooter;
         TakeDamage(shot.damage);
         return true;
     }
@@ -45,9 +48,10 @@ public class UnitHealth : MonoBehaviour, IShootable, IDamageable
     {
         // Y÷÷÷KK
         // Event I died? Give exp
-        PlayerSpawner.Instance.GetAlliedUnits().Remove(gameObject);
-        EnemySpawner.Instance.enemiesOnField.Remove(gameObject);
-        Destroy(gameObject);
+        lastUnitThatDamagedMe.GetComponent<Stats>().GiveExp(stats.expOnDeath);
+        PlayerSpawner.Instance.GetAlliedUnits().Remove(transform.parent.gameObject);
+        EnemySpawner.Instance.enemiesOnField.Remove(transform.parent.gameObject);
+        Destroy(transform.parent.gameObject);
     }
 
     void InvokeBloodSplatter(Vector2 hitPoint, Vector2 dir, Vector2 collPoint) //collPoint = targetPosition
@@ -56,5 +60,10 @@ public class UnitHealth : MonoBehaviour, IShootable, IDamageable
         Vector2 bloodPoint = hitPoint - 2 * Vector2.Dot(dir, centerToHit) * dir;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         OnBloodSplatterAction?.Invoke(new Vector3(bloodPoint.x, bloodPoint.y, -5), angle);
+    }
+
+    public float GetHpPercetage()
+    {
+        return hp / stats.maxHp;
     }
 }
